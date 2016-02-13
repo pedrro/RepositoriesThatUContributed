@@ -1,0 +1,22 @@
+{
+  "name": "allrepositoriescontributed",
+  "version": "1.0.0",
+  "description": "Static page to list all repositories that u contributed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrro/AllRepositoriesContributed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrro/AllRepositoriesContributed/issues"
+  },
+  "homepage": "https://github.com/pedrro/AllRepositoriesContributed#readme",
+  "devDependencies": {
+    "angular": "^1.5.0"
+  }
+}
