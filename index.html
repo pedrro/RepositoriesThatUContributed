@@ -16,21 +16,23 @@
   </head>
   <body>
     <h1>Repositories</h1>
-    <div ng-controller="RepositoriesCtrl as controller">
+    <div ng-controller="RepositoriesCtrl">
 
-<form ng-submit="search()">
-  <div class="input-group search-bar">
-    <input type="text" ng-model="user" placeholder="Enter a github user"/>
-<input type="submit" value="search" />
-  </div>
-</form>
-    <h2>Total de contributions: {{userRepositories.total_count}}</h2>
-    <ul class="list-group">
-          <li class="list-group-item" ng-repeat="repositories in userRepositories">
-              <p>{{repositories}}</p>
-          </li>
-        </ul>
-</div>
+      <form ng-submit="search()">
+        <div class="input-group search-bar">
+          <input type="text" ng-model="user" placeholder="Enter a github user"/>
+          <input type="submit" value="search"/>
+        </div>
+      </form>
+
+      <h2>Total de contributions:
+        {{userRepositoriesContributed}}</h2>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="repositories in userRepositories">
+          <p>{{repositories}}</p>
+        </li>
+      </ul>
+    </div>
     <footer class="site-footer">
       <span class="site-footer-owner">
         <a href="https://github.com/pedrro/AllRepositoriesContributed">Repositoriesthatucontributed</a>
