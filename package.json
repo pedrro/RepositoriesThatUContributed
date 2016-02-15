@@ -1,0 +1,22 @@
+{
+  "name": "allrepositoriescontributed",
+  "version": "1.0.0",
+  "description": "Static page to list all repositories that u contributed",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrro/AllRepositoriesContributed.git"
+  },
+  "author": "pedrro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrro/AllRepositoriesContributed/issues"
+  },
+  "homepage": "https://github.com/pedrro/AllRepositoriesContributed#readme",
+  "devDependencies": {
+    "angular": "1.2.29",
+    "bootstrap": "^3.3.6",
+    "jquery": "2.2.0",
+    "restangular": "1.4.0",
+    "underscore": "1.6.0"  }
+}
