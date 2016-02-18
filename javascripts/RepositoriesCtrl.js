@@ -1,8 +1,9 @@
-angular.module('AllRepositoriesContributed', []).controller('RepositoriesCtrl',['$scope','$http',function($scope, $http) {
+angular.module('AllRepositoriesContributed', []).controller('RepositoriesCtrl',['$scope','$http','$q',function($scope, $http, $q) {
   $scope.userRepositories = [{
-    repository_Info : '',
-    pr_Info : ''
+    pr_Info : '',
+    repository_Info : ''
   }];
+
   $scope.userInformation = {};
   $scope.user = "";
 
@@ -28,18 +29,21 @@ angular.module('AllRepositoriesContributed', []).controller('RepositoriesCtrl',[
   }
 
   $scope.search = function(){
-  $http.get("https://api.github.com/search/issues?q=type:pr+state:closed+author:"+$scope.user+"&per_page=100&page=1")
-  .then(function(response){
-    getUserInformation($scope.user);
-    getUserPRCount(response.data.total_count);
+    var promise1 = $http({method:'GET',url:'https://api.github.com/search/issues?q=type:pr+state:closed+author:'+$scope.user+'&per_page=100&page=1', cache:true});
+    var promise2 = $http({method:'GET',url:'https://api.github.com/users/'+$scope.user, cache:true});
 
-    for (var i = 0; i < response.data.items.length; i++) {
-      $scope.userRepositories[i].pr_Info = response.data.items[i];
-      // getRepositoryInformation(response.data.items[i].repository_url).then(function (anotherResponse) {
-      //   $scope.userRepositories[i].repository_Info = anotherResponse.data;
-      // });
-       }
-   });
+    $q.all([promise1, promise2]).then(function(data){
+      getUserPRCount(data[0].data.total_count);
+      $http.get(data[0].data.items[0].repository_url).then(function (anotherResponse) {
+        $scope.userRepositories = [{
+          pr_Info : data[0],
+          repository_Info : anotherResponse
+        }];
+      });
+
+      $scope.userInformation = data[1];
+
+    });
 
  };
 
