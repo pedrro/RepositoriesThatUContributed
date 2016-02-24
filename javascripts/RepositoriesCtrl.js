@@ -7,6 +7,10 @@ angular.module('AllRepositoriesContributed', []).controller('RepositoriesCtrl',[
   .then(function(response){
     $scope.userRepositories = response.data.items;
    });
+$http.get("https://api.github.com/users/"+$scope.user)
+   .then(function(response){
+     $scope.userData=response.data;
+    });
  };
 
 }]);
